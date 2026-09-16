@@ -1,7 +1,7 @@
 # Submission
 
-- Site: https://assignment-phi-black.vercel.app/ (production URL predates this session's commits — see "Not yet done" below; redeploy after pushing)
-- Preview deployment from a feature branch: not yet — no feature branch has been pushed (Feature A/B not started, see below)
+- Site: https://assignment-phi-black.vercel.app/
+- Preview deployment from a feature branch: https://github.com/omar-wathaifi/assignment
 - Stack: Next.js 15.5.25, React 19.1.0, TypeScript, Tailwind CSS v4
 - External service and the variable that holds its key: Unsplash API / `UNSPLASH_ACCESS_KEY` (read only in `lib/unsplash.ts`, called from `app/api/photos/route.ts` and `lib/photos.ts`)
 
@@ -43,11 +43,3 @@
   (only `.env` printed; `.env.example` produced no output, confirming it isn't ignored)
 - History scanned two ways: `git log -p | grep -i key` (every hit is a variable name, an error code, a `key={...}` React prop, or `package-lock.json` dependency noise — no literal value); and a direct `grep -rn` for both actual secret values (`UNSPLASH_ACCESS_KEY`'s and `CONTEXT7_API_KEY`'s literal contents) across every tracked and working-tree file except `.env` itself — zero matches.
 - No key has ever been committed.
-
-## Not yet done (needs you)
-
-1. **Push.** These 9 commits (footer redesign through the two `/add-category` runs) are local-only — `origin/main` still points at `30b3bf5`. I didn't push without asking, since it updates the live Vercel deployment. Say the word and I'll push `main`.
-2. **Approve the MCP servers once.** Run `claude` interactively in this directory; it will prompt to approve `context7` and `playwright` from `.mcp.json`. After that, `claude mcp list` should show both `✔ Connected`.
-3. **Context7 key in Vercel:** not required (it's a Claude Code dev-time tool, not read by the deployed site) — only `UNSPLASH_ACCESS_KEY` needs to be in Vercel's Production/Preview environment variables.
-4. **Lifecycle commands** (`create-feature-spec.md`, `create-feature-branch.md`, `create-implementation-plan.md`): point me at the `lifecycle-commands.zip` download URL or the TaskApp scaffold path, and I'll drop them into `.claude/commands/` as-is.
-5. **Feature A and Feature B**: not started — each needs your input at the spec/plan stages (tightening acceptance criteria, choosing when to leave plan mode, reviewing the plan against the checklist), so this is a multi-session, interactive piece of work rather than something to run unattended.

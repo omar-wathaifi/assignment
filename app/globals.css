@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --canvas: #f7f6f3;
+  --surface: #ffffff;
+  --ink: #171614;
+  --muted: #6a655e;
+  --line: #e3e0d9;
+  --brand: #0f766e;
+  --brand-strong: #115e59;
+  --on-brand: #ffffff;
+  --danger: #b42318;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --canvas: #121110;
+    --surface: #1b1a18;
+    --ink: #f4f2ee;
+    --muted: #a6a099;
+    --line: #2f2c28;
+    --brand: #2dd4bf;
+    --brand-strong: #5eead4;
+    --on-brand: #04241f;
+    --danger: #fca5a5;
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-brand: var(--brand);
+  --color-brand-strong: var(--brand-strong);
+  --color-on-brand: var(--on-brand);
+  --color-danger: var(--danger);
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* One consistent, always-visible focus treatment for every interactive element. */
+:where(a, button, input, select, textarea):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { PageHeader } from "@/components/page-header";
 import { getAllGames, getCategoryById, getGameById } from "@/lib/catalogue";
 import { formatDate, formatMoney } from "@/lib/format";
+import { getGamePhoto } from "@/lib/photos";
 
 const DETAIL_IMAGE_WIDTH = 960;
 const DETAIL_IMAGE_HEIGHT = 600;
@@ -42,6 +43,8 @@ export default async function GamePage({ params }: GamePageProps) {
   }
 
   const category = getCategoryById(game.categoryId);
+  // Photography is optional: without it the local placeholder cover is used.
+  const photo = category ? await getGamePhoto(game, category) : null;
 
   return (
     <>
@@ -52,15 +55,39 @@ export default async function GamePage({ params }: GamePageProps) {
       />
 
       <article className="grid gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-start">
-        <Image
-          src={game.imageUrl}
-          alt={`Placeholder cover art for ${game.name}`}
-          width={DETAIL_IMAGE_WIDTH}
-          height={DETAIL_IMAGE_HEIGHT}
-          sizes="(min-width: 1024px) 600px, 92vw"
-          priority
-          className="w-full rounded-xl border border-line bg-surface object-cover"
-        />
+        <figure className="m-0">
+          <Image
+            src={photo ? photo.largeUrl : game.imageUrl}
+            alt={
+              photo
+                ? `${game.name}: ${photo.alt}`
+                : `Placeholder cover art for ${game.name}`
+            }
+            width={DETAIL_IMAGE_WIDTH}
+            height={DETAIL_IMAGE_HEIGHT}
+            sizes="(min-width: 1024px) 600px, 92vw"
+            priority
+            className="w-full rounded-xl border border-line bg-surface object-cover"
+          />
+          <figcaption className="mt-2 text-xs text-muted">
+            {photo ? (
+              <>
+                Photo by{" "}
+                <a
+                  className="underline underline-offset-2 hover:text-brand"
+                  href={photo.credit.profileUrl}
+                  rel="noreferrer noopener"
+                  target="_blank"
+                >
+                  {photo.credit.name}
+                </a>{" "}
+                on Unsplash
+              </>
+            ) : (
+              "Placeholder cover: live photography is unavailable right now."
+            )}
+          </figcaption>
+        </figure>
 
         <div className="flex flex-col gap-6">
           <section aria-labelledby="about-heading">

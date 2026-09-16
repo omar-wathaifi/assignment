@@ -16,7 +16,10 @@ function unsplashPayload() {
       {
         id: "photo-1",
         alt_description: "wooden board game pieces on a table",
-        urls: { small: "https://images.unsplash.com/photo-1?w=400" },
+        urls: {
+          small: "https://images.unsplash.com/photo-1?w=400",
+          regular: "https://images.unsplash.com/photo-1?w=1080",
+        },
         user: { name: "Ada Lovelace", links: { html: "https://unsplash.com/@ada" } },
       },
     ],
@@ -110,6 +113,7 @@ describe("GET /api/photos — successful search", () => {
       {
         id: "photo-1",
         url: "https://images.unsplash.com/photo-1?w=400",
+        largeUrl: "https://images.unsplash.com/photo-1?w=1080",
         alt: "wooden board game pieces on a table",
         credit: { name: "Ada Lovelace", profileUrl: "https://unsplash.com/@ada" },
       },

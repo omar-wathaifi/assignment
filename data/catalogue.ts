@@ -20,7 +20,7 @@ export interface Game {
   name: string;
   description: string;
   price: number;
-  /** ISO 4217 currency code, rendered as `12.50 EUR`. */
+  /** ISO 4217 currency code, rendered as `12.50 JOD`. */
   currency: string;
   /** ISO 8601 date (YYYY-MM-DD), rendered as `15 Sep 2026`. */
   releaseDate: string;
@@ -59,7 +59,7 @@ export const games: Game[] = [
     description:
       "Rival corporations raise the temperature, oxygen and ocean coverage of the red planet. Card combinations build an engine that pays out over the full game, so early investments matter more than late grabs.",
     price: 64.9,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2016-10-01",
     imageUrl: "/images/terraforming-mars.svg",
   },
@@ -70,7 +70,7 @@ export const games: Game[] = [
     description:
       "Five factions compete for a fractured 1920s Europa using mechs, workers and carefully timed encounters. Every action unlocks another, which keeps turns short despite the size of the board.",
     price: 74.5,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2016-07-13",
     imageUrl: "/images/scythe.svg",
   },
@@ -81,7 +81,7 @@ export const games: Game[] = [
     description:
       "An economic game about building canals, rails and industry during the industrial revolution. Selling goods needs someone else's network, so the map turns into a negotiation you never speak out loud.",
     price: 69.0,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2018-11-02",
     imageUrl: "/images/brass-birmingham.svg",
   },
@@ -92,7 +92,7 @@ export const games: Game[] = [
     description:
       "Drive cattle from Texas to Kansas City while reshaping the route you travel. A deck-building core sits inside a rondel-like track, and the herd you buy early decides how the last third plays.",
     price: 54.95,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2016-10-13",
     imageUrl: "/images/great-western-trail.svg",
   },
@@ -103,7 +103,7 @@ export const games: Game[] = [
     description:
       "Collect coloured train cards and claim routes across a map of North America. The rules take three minutes to explain, and the tension comes entirely from the route someone else might take first.",
     price: 44.99,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2004-09-13",
     imageUrl: "/images/ticket-to-ride.svg",
   },
@@ -114,7 +114,7 @@ export const games: Game[] = [
     description:
       "Draw a tile, place it, and decide whether to commit one of your followers to a road, city or field. The board is different every game because the players build it as they go.",
     price: 29.95,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2000-03-15",
     imageUrl: "/images/carcassonne.svg",
   },
@@ -125,7 +125,7 @@ export const games: Game[] = [
     description:
       "Draft ceramic tiles from shared factories to decorate a palace wall. Taking the tiles you want often hands your neighbour exactly what they needed, which is where the whole game lives.",
     price: 39.5,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2017-10-19",
     imageUrl: "/images/azul.svg",
   },
@@ -136,7 +136,7 @@ export const games: Game[] = [
     description:
       "Build a five-by-five kingdom from domino-shaped tiles. Picking a strong tile pushes you later in the next turn order, so every choice trades value now against position later.",
     price: 19.99,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2016-10-15",
     imageUrl: "/images/kingdomino.svg",
   },
@@ -147,7 +147,7 @@ export const games: Game[] = [
     description:
       "Two spymasters give one-word clues to link several agents at once while avoiding the assassin. The best moments happen when a clue is obvious to everyone except the team that has to guess it.",
     price: 17.5,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2015-08-01",
     imageUrl: "/images/codenames.svg",
   },
@@ -158,7 +158,7 @@ export const games: Game[] = [
     description:
       "Everybody writes a one-word clue for the same mystery word, then every duplicate clue is thrown away. Cooperative, fast, and reliably funny with a table of eight.",
     price: 22.9,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2018-10-25",
     imageUrl: "/images/just-one.svg",
   },
@@ -169,7 +169,7 @@ export const games: Game[] = [
     description:
       "One player sees a hidden point on a spectrum between two opposites and gives a clue to place it. The arguments the team has before committing the dial are the actual game.",
     price: 34.95,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2019-11-15",
     imageUrl: "/images/wavelength.svg",
   },
@@ -180,7 +180,7 @@ export const games: Game[] = [
     description:
       "Describe a surreal illustration so that some, but not all, of the table finds it. Scoring punishes clues that are too clear and clues that are too obscure in equal measure.",
     price: 32.0,
-    currency: "EUR",
+    currency: "JOD",
     releaseDate: "2008-08-01",
     imageUrl: "/images/dixit.svg",
   },

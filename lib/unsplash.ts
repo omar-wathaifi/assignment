@@ -125,6 +125,7 @@ export async function searchPhotos(query: string, count: number): Promise<Photo[
       {
         id: result.id,
         url,
+        largeUrl: result.urls?.regular ?? url,
         alt: result.alt_description?.trim() || result.description?.trim() || `Photo of ${query}`,
         credit: {
           name: result.user?.name ?? "Unsplash contributor",

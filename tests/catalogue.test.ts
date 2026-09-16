@@ -37,6 +37,12 @@ describe("catalogue data", () => {
     }
   });
 
+  it("prices the whole catalogue in one currency", () => {
+    const currencies = new Set(getAllGames().map((game) => game.currency));
+
+    expect([...currencies]).toEqual(["JOD"]);
+  });
+
   it("gives every game the required shape and renderable values", () => {
     for (const game of getAllGames()) {
       expect(game.name.length).toBeGreaterThan(0);

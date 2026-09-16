@@ -22,11 +22,44 @@ Run a single test file: `npx vitest run tests/format.test.ts`. Run by name: `npx
 
 Setup: `cp .env.example .env` before `npm run dev`/`npm run build` (see Unsplash section below — the app runs fine with the key blank).
 
+## Data shape
+
+`data/catalogue.ts` is the single source of truth — two arrays, no database. Never import it directly from a page or component; always go through the read helpers in `lib/catalogue.ts` (`getCategories`, `getCategoryById`, `getGamesByCategory`, `getGameById`, `getAllGames`, `countGamesByCategory`).
+
+```ts
+interface Category {
+  id: string;          // slug used in the URL: /categories/{id}
+  name: string;
+  description: string;
+  photoQuery: string;   // Unsplash search term for this category's photos
+}
+
+interface Game {
+  id: string;           // slug used in the URL: /games/{id}
+  categoryId: string;   // must match an existing Category.id
+  name: string;
+  description: string;
+  price: number;
+  currency: string;     // ISO 4217, e.g. "JOD" — one currency for the whole catalogue
+  releaseDate: string;  // ISO 8601 date, e.g. "2017-10-19"
+  imageUrl: string;     // local placeholder cover, e.g. "/images/{id}.svg"
+}
+```
+
+Every category needs at least 4 games. `tests/catalogue.test.ts` enforces uniqueness of ids, that every game's `categoryId` resolves, and that every field renders through the formatters — extend it rather than skip it when the data changes.
+
+## Secrets
+
+Two variables, both server-side only, both listed (blank) in `.env.example` and filled in locally in `.env` (git-ignored — verify with `git check-ignore -v .env .env.example`: the first should print, the second should stay silent):
+
+- `UNSPLASH_ACCESS_KEY` — read only by `lib/unsplash.ts`, called only from `app/api/photos/route.ts` and `lib/photos.ts` (both server-side). Get one at <https://unsplash.com/developers>.
+- `CONTEXT7_API_KEY` — used by `.mcp.json` to authenticate the Context7 MCP server (a Claude Code dev tool, not read by the site itself). Get one at <https://context7.com/dashboard>.
+
+Never prefix either with `NEXT_PUBLIC_` — that inlines the value into the client bundle. Any new external API follows the same rule: the key is read in a route handler or a `server-only`-guarded lib module, never in a client component, and the variable is added to `.env.example` blank before it's added to `.env`.
+
 ## Architecture
 
 ### Data flow: server data, client-fetched grid
-
-`data/catalogue.ts` is the single source of truth (`Category`, `Game` types + arrays). Never import it directly — always go through the read helpers in `lib/catalogue.ts` (`getCategories`, `getCategoryById`, `getGamesByCategory`, `getGameById`, `getAllGames`, `countGamesByCategory`).
 
 The category page (`app/categories/[categoryId]/page.tsx`) is a server component that reads the category directly via `getCategoryById` for the header, then hands off to `components/game-list.tsx` — a **client** component that fetches `GET /api/games?categoryId=...` in the browser. This split exists specifically so the four required list states (loading / empty / error / success) are real, not simulated: loading is a skeleton grid (`components/skeleton-grid.tsx`, never a bare spinner), error has a working retry that refetches, empty explains what to do next. `loading.tsx` / `error.tsx` / `not-found.tsx` siblings on both dynamic routes cover the server-rendering boundary on top of that.
 
@@ -61,3 +94,13 @@ Four Vitest suites in `tests/`, run against `jsdom` with `@testing-library/react
 - `game-list.test.tsx` — the loading/empty/error/success states of `GameList`, and that retry actually refetches and recovers.
 
 When adding a new API failure mode or list state, extend the matching suite above rather than starting a new one.
+
+## Definition of done
+
+A change under `app/`, `components/`, `lib/`, or `data/` is done only when, in order:
+
+1. `npm run lint`, `npm run typecheck`, and `npm test` pass, and `npm run build` succeeds.
+2. The **site-reviewer** subagent (`.claude/agents/site-reviewer.md`) has reviewed the diff against `main` and every BLOCKING finding is resolved.
+3. The change has been checked in a real browser via the Playwright MCP server (`.mcp.json`) — not just read back as HTML — on at least the page(s) touched.
+
+Skipping any of these three isn't a shortcut, it's an unfinished change.

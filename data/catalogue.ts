@@ -49,6 +49,13 @@ export const categories: Category[] = [
       "Loud, quick games for larger groups. Rules fit on a card, and everyone stays involved between turns.",
     photoQuery: "party game friends cards",
   },
+  {
+    id: "cooperative",
+    name: "Cooperative",
+    description:
+      "Everyone wins or loses together against the game itself. Best when the table talks through every decision out loud.",
+    photoQuery: "cooperative board game team",
+  },
 ];
 
 export const games: Game[] = [
@@ -183,5 +190,49 @@ export const games: Game[] = [
     currency: "JOD",
     releaseDate: "2008-08-01",
     imageUrl: "/images/dixit.svg",
+  },
+  {
+    id: "pandemic",
+    categoryId: "cooperative",
+    name: "Pandemic",
+    description:
+      "Four diseases spread across the world while the team races to research cures before an outbreak cascades out of control. Each role has one strength, so the plan only works if everyone says what they can do.",
+    price: 34.9,
+    currency: "JOD",
+    releaseDate: "2008-08-01",
+    imageUrl: "/images/pandemic.svg",
+  },
+  {
+    id: "spirit-island",
+    categoryId: "cooperative",
+    name: "Spirit Island",
+    description:
+      "Nature spirits defend an island from colonising invaders, combining slow-building powers to clear explorers before towns and cities take root. Heavier than most cooperative games, and it stays tense until the last card.",
+    price: 59.95,
+    currency: "JOD",
+    releaseDate: "2017-04-12",
+    imageUrl: "/images/spirit-island.svg",
+  },
+  {
+    id: "the-crew",
+    categoryId: "cooperative",
+    name: "The Crew",
+    description:
+      "A trick-taking game where the team must land specific cards in a specific order, but talking about your hand is almost entirely forbidden. Missions escalate over a campaign, one deal at a time.",
+    price: 18.5,
+    currency: "JOD",
+    releaseDate: "2019-10-01",
+    imageUrl: "/images/the-crew.svg",
+  },
+  {
+    id: "forbidden-island",
+    categoryId: "cooperative",
+    name: "Forbidden Island",
+    description:
+      "A sinking island must be searched for four treasures before it goes under completely. Shorter and lighter than Pandemic, and a common first cooperative game for new tables.",
+    price: 16.95,
+    currency: "JOD",
+    releaseDate: "2010-04-15",
+    imageUrl: "/images/forbidden-island.svg",
   },
 ];

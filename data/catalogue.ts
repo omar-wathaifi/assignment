@@ -56,6 +56,13 @@ export const categories: Category[] = [
       "Everyone wins or loses together against the game itself. Best when the table talks through every decision out loud.",
     photoQuery: "cooperative board game team",
   },
+  {
+    id: "abstract",
+    name: "Abstract",
+    description:
+      "No theme, no luck, no hidden information — just a board and perfect information. Best for two players who want the game to be entirely their own doing.",
+    photoQuery: "abstract strategy board game",
+  },
 ];
 
 export const games: Game[] = [
@@ -234,5 +241,49 @@ export const games: Game[] = [
     currency: "JOD",
     releaseDate: "2010-04-15",
     imageUrl: "/images/forbidden-island.svg",
+  },
+  {
+    id: "hive",
+    categoryId: "abstract",
+    name: "Hive",
+    description:
+      "Surround the opposing queen bee with hexagonal insect tiles that each move like a different chess piece. No board at all — the hive's shape is whatever the tiles have built so far.",
+    price: 24.9,
+    currency: "JOD",
+    releaseDate: "2001-01-01",
+    imageUrl: "/images/hive.svg",
+  },
+  {
+    id: "onitama",
+    categoryId: "abstract",
+    name: "Onitama",
+    description:
+      "A tiny chess-like duel where the five movement cards in play change after every turn, so the same position never plays the same way twice. Rules explained in under a minute, mastered over many more.",
+    price: 15.5,
+    currency: "JOD",
+    releaseDate: "2014-10-01",
+    imageUrl: "/images/onitama.svg",
+  },
+  {
+    id: "santorini",
+    categoryId: "abstract",
+    name: "Santorini",
+    description:
+      "Build towers and climb them to reach the third level first, while the god-power cards quietly rewrite what a normal move can do. Easy to teach as a pure movement game, sharper once the powers come out.",
+    price: 22.0,
+    currency: "JOD",
+    releaseDate: "2016-01-01",
+    imageUrl: "/images/santorini.svg",
+  },
+  {
+    id: "quoridor",
+    categoryId: "abstract",
+    name: "Quoridor",
+    description:
+      "Race a pawn to the opposite edge of the board while placing walls to slow everyone else down. Every wall you place opens a path for someone, so the board is a running negotiation with no words.",
+    price: 14.95,
+    currency: "JOD",
+    releaseDate: "1997-01-01",
+    imageUrl: "/images/quoridor.svg",
   },
 ];
